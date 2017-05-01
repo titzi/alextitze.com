@@ -10,7 +10,7 @@
     <meta content='Alex Titze' name='Publisher'>
     <meta content='Alex Titze (c) 2015 alextitze.com' name='Copyright'>
     <meta content='2' name='Revisit'>
-    <meta content='Software Architect' name='Keywords'>
+    <meta content='Cloud Architect' name='Keywords'>
     <meta content='' name='Description'>
     <meta content='index,follow' name='Robots'>
     <meta content='en' name='Language'>
@@ -18,6 +18,9 @@
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=2.0, minimum-scale=1.0, user-scalable=yes' name='viewport'>
     <meta content='yes' name='apple-mobile-web-app-capable'>
     <meta content='black-translucent' name='apple-mobile-web-app-status-bar-style'>
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
     <link rel="apple-touch-icon" sizes="57x57" href="apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="apple-icon-72x72.png">
@@ -32,9 +35,7 @@
     <link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
     <link rel="manifest" href="manifest.json">
-    <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="ms-icon-144x144.png">
-    <meta name="theme-color" content="#ffffff">
+    <script src="jquery-3.2.1.min"></script>
     <style>
       @font-face {
         font-family: 'at-light';
@@ -61,9 +62,18 @@
       body {
         font-family: 'at-light', Helvetica, 'sans-serif';
         font-size: 1em;
-        margin-top: 15%;
-        color: #ddd;
+        margin-top: 7%;
+        color: #000;
+        background: #e9d5b2;
+        -webkit-transition: 0.5s ease;
+        transition: background-color 0.5s ease;
+      }
+      body.hovered {
+        background: #c7b99f;
+      }
+      body.clicked {
         background: #000;
+        color: #fff;
       }
       h1 {
         font-family: 'at-light', Helvetica, 'sans-serif';
@@ -72,7 +82,7 @@
         font-style: normal;
         text-transform: lowercase;
         letter-spacing: 0.1em;
-        margin: 0 0 0.4em 0;
+        margin: 0 0 0.2em 0;
       }
       h2 {
         font-family: 'at-bold', Helvetica, 'sans-serif';
@@ -80,6 +90,15 @@
         font-weight: bold;
         font-style: normal;
         text-transform: uppercase;
+        letter-spacing: 0.03em;
+        margin: 0 0 0.6em 0;
+      }
+      h3 {
+        font-family: 'at-light', Helvetica, 'sans-serif';
+        font-size: 1.0em;
+        font-weight: bold;
+        font-style: italic;
+        text-transform: lowercase;
         letter-spacing: 0.03em;
         margin: 0 0 2em 0;
       }
@@ -94,27 +113,27 @@
         text-align: center;
       }
       figure {
-        width: 100px;
-        height: 100px;
+        width: 400px;
+        height: 400px;
         margin: 0 auto;
       }
       .pic figure img {
-        width: 200px;
+        width: 400px;
         border-radius: 50%;
         -webkit-filter: blur(30px);
-        filter: blur(20px);
+        filter: blur(30px);
         -webkit-transition: .3s ease-in-out;
         transition: .3s ease-in-out;
         cursor: pointer;
       }
       .pic figure:hover img {
-        -webkit-filter: blur(5px);
-        filter: blur(5px);
+        -webkit-filter: blur(0px);
+        filter: blur(0px);
       }
-      .pic figure:active img {
+      /*.pic figure:active img {
         -webkit-filter: blur(0);
         filter: blur(0);
-      }
+      }*/
       a.linkedin {
         position: absolute;
         width: 100%;
@@ -125,19 +144,31 @@
       }
       a.linkedin img {
         width: 30px;
+        -webkit-filter: invert(1);
+        filter: invert(1);
       }
-      a.email {
+      a.linkedin.clicked img {
+        -webkit-filter: invert(0);
+        filter: invert(0);
+      }
+      div.email {
         position: absolute;
         width: 100%;
         left: 0;
         right: 0;
         bottom: 1em;
         text-align: center;
-        letter-spacing: 0.1em;
       }
-      .invert {
-        background: #fff;
-        transition: .3s ease-in-out;
+      a.email {
+        letter-spacing: 0.1em;
+        color: #000;
+        padding: 0.1em 0.5em;
+        border-radius: 3px;
+        opacity: 0.7;
+      }
+      a.email.clicked {
+        opacity: 1;
+        color: #fff;
       }
     </style>
   </head>
@@ -147,26 +178,42 @@
         Alex Titze
       </h1>
       <h2>
-        Software Architect
+        Cloud Architect
       </h2>
+      <h3>
+        <script type="text/javascript">
+          <!--
+            var rpmxssj = ['a','z','c','l','e','h',':','l','o','m','e','a','a','"','s','/','m','x','c','x','s','i','a','i','e','<','l','r',' ','=','m','o','i','c','>','"','t','a','"','a','a','f','.','@','i','>','l',' ','i','t','a','"','.','o','i','a','z','l','e','<','m','m','l','=','t','t','@','t','e','m','e','l'];
+            var wpsusqo = [1,62,65,22,29,3,15,56,32,16,5,21,55,34,40,69,67,58,31,24,39,26,10,52,43,68,37,4,2,41,50,66,11,36,71,42,25,51,8,38,45,6,30,20,46,49,47,35,18,13,70,48,64,14,60,17,28,53,57,0,44,33,12,7,27,61,54,59,63,9,23,19];
+            var rjzckrg= new Array();
+            for(var i=0;i<wpsusqo.length;i++){rjzckrg[wpsusqo[i]] = rpmxssj[i];}
+            for(var i=0;i<rjzckrg.length;i++){document.write(rjzckrg[i]);}
+          // -->
+        </script>
+        <noscript>Please enable Javascript to see the email address</noscript>
+      </h3>
       <div class="pic">
         <figure>
-          <img src="alextitze.png" />
+          <img src="alextitze.jpg" title="can't see you..." />
         </figure>
       </div>
-      <a href="https://www.linkedin.com/in/alextitze" target="blank" class="linkedin">
+      <script type="text/javascript">
+        $(".pic img").mouseover(function() {
+          $("body").addClass("hovered");
+        }).mouseout(function() {
+          $("body").removeClass("hovered");
+        });
+        $(".pic img").mousedown(function() {
+          $(".pic img").prop("src", "alextitze-active.jpg");
+          $("body, a.email, a.linkedin").addClass("clicked");
+        }).mouseup(function() {
+          $(".pic img").prop("src", "alextitze.jpg");
+          $("body, a.email, a.linkedin").removeClass("clicked");
+        });
+      </script>
+      <a href="https://www.linkedin.com/in/alextitze" target="blank" class="linkedin" title="LinkedIn Profile">
         <img src="linkedin.png" />
       </a>
-      <script type="text/javascript">
-        <!--
-          var rpmxssj = ['a','z','c','l','e','h',':','l','o','m','e','a','a','"','s','/','m','x','c','x','s','i','a','i','e','<','l','r',' ','=','m','o','i','c','>','"','t','a','"','a','a','f','.','@','i','>','l',' ','i','t','a','"','.','o','i','a','z','l','e','<','m','m','l','=','t','t','@','t','e','m','e','l'];
-          var wpsusqo = [1,62,65,22,29,3,15,56,32,16,5,21,55,34,40,69,67,58,31,24,39,26,10,52,43,68,37,4,2,41,50,66,11,36,71,42,25,51,8,38,45,6,30,20,46,49,47,35,18,13,70,48,64,14,60,17,28,53,57,0,44,33,12,7,27,61,54,59,63,9,23,19];
-          var rjzckrg= new Array();
-          for(var i=0;i<wpsusqo.length;i++){rjzckrg[wpsusqo[i]] = rpmxssj[i];}
-          for(var i=0;i<rjzckrg.length;i++){document.write(rjzckrg[i]);}
-        // -->
-      </script>
-      <noscript>Please enable Javascript to see the email address</noscript>
     </div>
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
