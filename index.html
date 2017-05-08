@@ -36,6 +36,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
     <link rel="manifest" href="manifest.json">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://rawgit.com/ngryman/jquery.finger/v0.1.2/dist/jquery.finger.js"></script>
     <style>
       @font-face {
         font-family: 'at-light';
@@ -91,7 +92,7 @@
         font-style: normal;
         text-transform: uppercase;
         letter-spacing: 0.03em;
-        margin: 0 0 0.6em 0;
+        margin: 0 0 0.2em 0;
       }
       h3 {
         font-family: 'at-light', Helvetica, 'sans-serif';
@@ -100,7 +101,7 @@
         font-style: italic;
         text-transform: lowercase;
         letter-spacing: 0.03em;
-        margin: 0 0 2em 0;
+        margin: 0 0 3em 0;
       }
       a, a:hover {
         color: #ddd;
@@ -212,18 +213,28 @@
         </figure>
       </div>
       <script type="text/javascript">
-        $(".pic img").mouseover(function() {
-          $("body").addClass("hovered");
-        }).mouseout(function() {
-          $("body").removeClass("hovered");
-        });
-        $(".pic img").mousedown(function() {
-          $(".pic img").prop("src", "alextitze-active.jpg");
-          $("body, a.email, a.linkedin").addClass("clicked");
-        }).mouseup(function() {
-          $(".pic img").prop("src", "alextitze.jpg");
-          $("body, a.email, a.linkedin").removeClass("clicked");
-        });
+        // touch devices
+        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Opera Mobile|Kindle|Windows Phone|PSP|AvantGo|Atomic Web Browser|Blazer|Chrome Mobile|Dolphin|Dolfin|Doris|GO Browser|Jasmine|MicroB|Mobile Firefox|Mobile Safari|Mobile Silk|Motorola Internet Browser|NetFront|NineSky|Nokia Web Browser|Obigo|Openwave Mobile Browser|Palm Pre web browser|Polaris|PS Vita browser|Puffin|QQbrowser|SEMC Browser|Skyfire|Tear|TeaShark|UC Browser|uZard Web|wOSBrowser|Yandex.Browser mobile/i.test(navigator.userAgent)) {
+          $(".pic img").on('tap', function(e) {
+            if($(".pic img").attr("src")=="alextitze.jpg") { $(".pic img").prop("src", "alextitze-active.jpg"); }
+            else { $(".pic img").prop("src", "alextitze.jpg"); }
+            $("body, a.email, a.linkedin").toggleClass("clicked");
+          });
+        // mouse devices
+        } else {
+          $(".pic img").on('mouseover', function() {
+            $("body").addClass("hovered");
+          }).on('mouseout', function() {
+            $("body").removeClass("hovered");
+          });
+          $(".pic img").on('mousedown', function() {
+            $(".pic img").prop("src", "alextitze-active.jpg");
+            $("body, a.email, a.linkedin").addClass("clicked");
+          }).on('mouseup', function() {
+            $(".pic img").prop("src", "alextitze.jpg");
+            $("body, a.email, a.linkedin").removeClass("clicked");
+          });
+        }
       </script>
       <a href="https://www.linkedin.com/in/alextitze" target="blank" class="linkedin" title="LinkedIn Profile">
         <img src="linkedin.png" />
