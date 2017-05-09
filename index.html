@@ -127,7 +127,7 @@
         transition: .3s ease-in-out;
         cursor: pointer;
       }
-      .pic figure:hover img {
+      .pic figure.hovered img {
         -webkit-filter: blur(0px);
         filter: blur(0px);
       }
@@ -218,14 +218,15 @@
           $(".pic img").on('tap', function(e) {
             if($(".pic img").attr("src")=="alextitze.jpg") { $(".pic img").prop("src", "alextitze-active.jpg"); }
             else { $(".pic img").prop("src", "alextitze.jpg"); }
+            $(".pic figure").toggleClass("hovered");
             $("body, a.email, a.linkedin").toggleClass("clicked");
           });
         // mouse devices
         } else {
           $(".pic img").on('mouseover', function() {
-            $("body").addClass("hovered");
+            $("body, .pic figure").addClass("hovered");
           }).on('mouseout', function() {
-            $("body").removeClass("hovered");
+            $("body, .pic figure").removeClass("hovered");
           });
           $(".pic img").on('mousedown', function() {
             $(".pic img").prop("src", "alextitze-active.jpg");
