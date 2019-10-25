@@ -1,253 +1,322 @@
 <!DOCTYPE html>
 <html lang='en' xml:lang='en' xmlns='http://www.w3.org/1999/xhtml'>
-  <head>
-    <title>Alex Titze</title>
-    <meta content='text/html' http-equiv='Content-Type'>
-    <meta content='text/css' http-equiv='content-style-type'>
-    <meta content='text/javascript' http-equiv='content-script-type'>
-    <meta content='Alex Titze' name='Title'>
-    <meta content='Alex Titze' name='Author'>
-    <meta content='Alex Titze' name='Publisher'>
-    <meta content='Alex Titze (c) 2015 alextitze.com' name='Copyright'>
-    <meta content='2' name='Revisit'>
-    <meta content='Software Architect, APX Designer' name='Keywords'>
-    <meta content='' name='Description'>
-    <meta content='index,follow' name='Robots'>
-    <meta content='en' name='Language'>
-    <meta content='all' name='Audience'>
-    <meta content='width=device-width, initial-scale=1.0, maximum-scale=2.0, minimum-scale=1.0, user-scalable=yes' name='viewport'>
-    <meta content='yes' name='apple-mobile-web-app-capable'>
-    <meta content='black-translucent' name='apple-mobile-web-app-status-bar-style'>
-    <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="ms-icon-144x144.png">
-    <meta name="theme-color" content="#ffffff">
-    <link rel="apple-touch-icon" sizes="57x57" href="apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="apple-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="apple-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="apple-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="apple-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="apple-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="apple-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="apple-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192"  href="android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-    <link rel="manifest" href="manifest.json">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://rawgit.com/ngryman/jquery.finger/v0.1.2/dist/jquery.finger.js"></script>
-    <style>
-      @font-face {
-        font-family: 'at-light';
-        src: url('at-light.eot'); /* IE9 Compat Modes */
-        src: url('at-light.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-          url('at-light.woff2') format('woff2'), /* Modern Browsers */
-          url('at-light.woff') format('woff'), /* Modern Browsers */
-          url('at-light.ttf') format('truetype'), /* Safari, Android, iOS */
-          url('at-light.svg') format('svg'); /* Legacy iOS */
-        font-weight: normal;
-        font-style: normal;
-      }
-      @font-face {
-        font-family: 'at-bold';
-        src: url('at-bold.eot'); /* IE9 Compat Modes */
-        src: url('at-bold.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-          url('at-bold.woff2') format('woff2'), /* Modern Browsers */
-          url('at-bold.woff') format('woff'), /* Modern Browsers */
-          url('at-bold.ttf') format('truetype'), /* Safari, Android, iOS */
-          url('at-bold.svg') format('svg'); /* Legacy iOS */
-        font-weight: bold;
-        font-style: normal;
-      }
-      body {
-        font-family: 'at-light', Helvetica, 'sans-serif';
-        font-size: 1em;
-        margin-top: 5%;
-        color: #000;
-        background: #e9d5b2;
-        -webkit-transition: 0.5s ease;
-        transition: background-color 0.5s ease;
-      }
-      body.hovered {
-        background: #c7b99f;
-      }
-      body.clicked {
-        background: #000;
-        color: #fff;
-      }
-      h1 {
-        font-family: 'at-light', Helvetica, 'sans-serif';
-        font-size: 1.4em;
-        font-weight: 300;
-        font-style: normal;
-        text-transform: lowercase;
-        letter-spacing: 0.1em;
-        margin: 0 0 0.2em 0;
-      }
-      h2 {
-        font-family: 'at-bold', Helvetica, 'sans-serif';
-        font-size: 2.3em;
-        font-weight: bold;
-        font-style: normal;
-        text-transform: uppercase;
-        letter-spacing: 0.03em;
-        margin: 0 0 0.2em 0;
-      }
-      h3 {
-        font-family: 'at-light', Helvetica, 'sans-serif';
-        font-size: 1.0em;
-        font-weight: bold;
-        font-style: normal;
-        text-transform: lowercase;
-        letter-spacing: 0.03em;
-        margin: 0 0 3em 0;
-      }
-      a, a:hover {
-        color: #ddd;
-        text-decoration: none;
-      }
-      img {
-        border: 0;
-      }
-      .text-center {
-        text-align: center;
-      }
-      figure {
-        width: 400px;
-        height: 400px;
-        margin: 0 auto;
-      }
-      .pic figure img {
-        width: 400px;
-        border-radius: 50%;
-        -webkit-filter: blur(30px);
-        filter: blur(30px);
-        -webkit-transition: .3s ease-in-out;
-        transition: .3s ease-in-out;
-        cursor: pointer;
-      }
-      .pic figure.hovered img {
-        -webkit-filter: blur(0px);
-        filter: blur(0px);
-      }
-      /*.pic figure:active img {
+
+<head>
+  <title>Alex Titze</title>
+  <meta content='text/html' http-equiv='Content-Type'>
+  <meta content='text/css' http-equiv='content-style-type'>
+  <meta content='text/javascript' http-equiv='content-script-type'>
+  <meta content='Alex Titze' name='Title'>
+  <meta content='Alex Titze' name='Author'>
+  <meta content='Alex Titze' name='Publisher'>
+  <meta content='Alex Titze (c) 2015 alextitze.com' name='Copyright'>
+  <meta content='2' name='Revisit'>
+  <meta content='Software Architect, APX Designer' name='Keywords'>
+  <meta content='' name='Description'>
+  <meta content='index,follow' name='Robots'>
+  <meta content='en' name='Language'>
+  <meta content='all' name='Audience'>
+  <meta content='width=device-width, initial-scale=1.0, maximum-scale=2.0, minimum-scale=1.0, user-scalable=yes'
+    name='viewport'>
+  <meta content='yes' name='apple-mobile-web-app-capable'>
+  <meta content='black-translucent' name='apple-mobile-web-app-status-bar-style'>
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="apple-touch-icon" sizes="57x57" href="apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="manifest" href="manifest.json">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://rawgit.com/ngryman/jquery.finger/v0.1.2/dist/jquery.finger.js"></script>
+  <style>
+    @font-face {
+      font-family: 'at-light';
+      src: url('at-light.eot');
+      /* IE9 Compat Modes */
+      src: url('at-light.eot?#iefix') format('embedded-opentype'),
+        /* IE6-IE8 */
+        url('at-light.woff2') format('woff2'),
+        /* Modern Browsers */
+        url('at-light.woff') format('woff'),
+        /* Modern Browsers */
+        url('at-light.ttf') format('truetype'),
+        /* Safari, Android, iOS */
+        url('at-light.svg') format('svg');
+      /* Legacy iOS */
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: 'at-bold';
+      src: url('at-bold.eot');
+      /* IE9 Compat Modes */
+      src: url('at-bold.eot?#iefix') format('embedded-opentype'),
+        /* IE6-IE8 */
+        url('at-bold.woff2') format('woff2'),
+        /* Modern Browsers */
+        url('at-bold.woff') format('woff'),
+        /* Modern Browsers */
+        url('at-bold.ttf') format('truetype'),
+        /* Safari, Android, iOS */
+        url('at-bold.svg') format('svg');
+      /* Legacy iOS */
+      font-weight: bold;
+      font-style: normal;
+    }
+
+    body {
+      font-family: 'at-light', Helvetica, 'sans-serif';
+      font-size: 1em;
+      margin-top: 5%;
+      color: #000;
+      background: #e9d5b2;
+      -webkit-transition: 0.5s ease;
+      transition: background-color 0.5s ease;
+    }
+
+    body.hovered {
+      background: #c7b99f;
+    }
+
+    body.clicked {
+      background: #000;
+      color: #fff;
+    }
+
+    h1 {
+      font-family: 'at-light', Helvetica, 'sans-serif';
+      font-size: 1.4em;
+      font-weight: 300;
+      font-style: normal;
+      text-transform: lowercase;
+      letter-spacing: 0.1em;
+      margin: 0 0 0.2em 0;
+    }
+
+    h2 {
+      font-family: 'at-bold', Helvetica, 'sans-serif';
+      font-size: 2.3em;
+      font-weight: bold;
+      font-style: normal;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      margin: 0 0 0.2em 0;
+    }
+
+    h3 {
+      font-family: 'at-light', Helvetica, 'sans-serif';
+      font-size: 1.0em;
+      font-weight: bold;
+      font-style: normal;
+      text-transform: lowercase;
+      letter-spacing: 0.03em;
+      margin: 0 0 3em 0;
+    }
+
+    a,
+    a:hover {
+      color: #ddd;
+      text-decoration: none;
+    }
+
+    img {
+      border: 0;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    figure {
+      width: 400px;
+      height: 400px;
+      margin: 0 auto;
+    }
+
+    .pic figure img {
+      width: 400px;
+      border-radius: 50%;
+      -webkit-filter: blur(30px);
+      filter: blur(30px);
+      -webkit-transition: .3s ease-in-out;
+      transition: .3s ease-in-out;
+      cursor: pointer;
+    }
+
+    .pic figure.hovered img {
+      -webkit-filter: blur(0px);
+      filter: blur(0px);
+    }
+
+    /*.pic figure:active img {
         -webkit-filter: blur(0);
         filter: blur(0);
       }*/
+    a.linkedin {
+      position: absolute;
+      width: 100%;
+      left: 0;
+      right: 0;
+      bottom: 2.7em;
+      text-align: center;
+    }
+
+    a.linkedin img {
+      width: 30px;
+      -webkit-filter: invert(1);
+      filter: invert(1);
+    }
+
+    a.linkedin.clicked img {
+      -webkit-filter: invert(0);
+      filter: invert(0);
+    }
+
+    div.email {
+      position: absolute;
+      width: 100%;
+      left: 0;
+      right: 0;
+      bottom: 1em;
+      text-align: center;
+    }
+
+    a.email {
+      letter-spacing: 0.1em;
+      color: #000;
+      padding: 0.1em 0.5em;
+      border-radius: 3px;
+      opacity: 0.7;
+    }
+
+    a.email.clicked {
+      opacity: 1;
+      color: #fff;
+    }
+
+    @media screen and (max-width: 768px) {}
+
+    @media screen and (max-width: 480px) {
+      figure {
+        width: 200px;
+        height: 200px;
+      }
+
+      .pic figure img {
+        width: 200px;
+      }
+
       a.linkedin {
-        position: absolute;
-        width: 100%;
-        left: 0;
-        right: 0;
-        bottom: 2.7em;
-        text-align: center;
+        bottom: 0.5em;
       }
-      a.linkedin img {
-        width: 30px;
-        -webkit-filter: invert(1);
-        filter: invert(1);
-      }
-      a.linkedin.clicked img {
-        -webkit-filter: invert(0);
-        filter: invert(0);
-      }
-      div.email {
-        position: absolute;
-        width: 100%;
-        left: 0;
-        right: 0;
-        bottom: 1em;
-        text-align: center;
-      }
-      a.email {
-        letter-spacing: 0.1em;
-        color: #000;
-        padding: 0.1em 0.5em;
-        border-radius: 3px;
-        opacity: 0.7;
-      }
-      a.email.clicked {
-        opacity: 1;
-        color: #fff;
-      }
-      @media screen and (max-width: 768px) {
-      }
-      @media screen and (max-width: 480px) {
-        figure {
-          width: 200px;
-          height: 200px;
-        }
-        .pic figure img {
-          width: 200px;
-        }
-        a.linkedin {
-          bottom: 0.5em;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <div class="text-center">
-      <h1>
-        Alex Titze
-      </h1>
-      <h2>
-        Good Guy
-      </h2>
-      <h3>
-        <script type="text/javascript">
-          <!--
-            var rpmxssj = ['a','z','c','l','e','h',':','l','o','m','e','a','a','"','s','/','m','x','c','x','s','i','a','i','e','<','l','r',' ','=','m','o','i','c','>','"','t','a','"','a','a','f','.','@','i','>','l',' ','i','t','a','"','.','o','i','a','z','l','e','<','m','m','l','=','t','t','@','t','e','m','e','l'];
-            var wpsusqo = [1,62,65,22,29,3,15,56,32,16,5,21,55,34,40,69,67,58,31,24,39,26,10,52,43,68,37,4,2,41,50,66,11,36,71,42,25,51,8,38,45,6,30,20,46,49,47,35,18,13,70,48,64,14,60,17,28,53,57,0,44,33,12,7,27,61,54,59,63,9,23,19];
-            var rjzckrg= new Array();
-            for(var i=0;i<wpsusqo.length;i++){rjzckrg[wpsusqo[i]] = rpmxssj[i];}
-            for(var i=0;i<rjzckrg.length;i++){document.write(rjzckrg[i]);}
-          // -->
-        </script>
-        <noscript>Please enable Javascript to see the email address</noscript>
-      </h3>
-      <div class="pic">
-        <figure>
-          <img src="alextitze.jpg" title="can't see you..." />
-        </figure>
-      </div>
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="text-center">
+    <h1>
+      Alex Titze
+    </h1>
+    <h2>
+      Good Guy
+    </h2>
+    <h3>
       <script type="text/javascript">
-        // touch devices
-        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Opera Mobile|Kindle|Windows Phone|PSP|AvantGo|Atomic Web Browser|Blazer|Chrome Mobile|Dolphin|Dolfin|Doris|GO Browser|Jasmine|MicroB|Mobile Firefox|Mobile Safari|Mobile Silk|Motorola Internet Browser|NetFront|NineSky|Nokia Web Browser|Obigo|Openwave Mobile Browser|Palm Pre web browser|Polaris|PS Vita browser|Puffin|QQbrowser|SEMC Browser|Skyfire|Tear|TeaShark|UC Browser|uZard Web|wOSBrowser|Yandex.Browser mobile/i.test(navigator.userAgent)) {
-          $(".pic img").on('tap', function(e) {
-            if($(".pic img").attr("src")=="alextitze.jpg") { $(".pic img").prop("src", "alextitze-active.jpg"); }
-            else { $(".pic img").prop("src", "alextitze.jpg"); }
-            $(".pic figure").toggleClass("hovered");
-            $("body, a.email, a.linkedin").toggleClass("clicked");
-          });
-        // mouse devices
-        } else {
-          $(".pic img").on('mouseover', function() {
-            $("body, .pic figure").addClass("hovered");
-          }).on('mouseout', function() {
-            $("body, .pic figure").removeClass("hovered");
-          });
-          $(".pic img").on('mousedown', function() {
-            $(".pic img").prop("src", "alextitze-active.jpg");
-            $("body, a.email, a.linkedin").addClass("clicked");
-          }).on('mouseup', function() {
-            $(".pic img").prop("src", "alextitze.jpg");
-            $("body, a.email, a.linkedin").removeClass("clicked");
-          });
+        <!--
+        var rpmxssj = ['a', 'z', 'c', 'l', 'e', 'h', ':', 'l', 'o', 'm', 'e', 'a', 'a', '"', 's', '/', 'm', 'x', 'c',
+          'x', 's', 'i', 'a', 'i', 'e', '<', 'l', 'r', ' ', '=', 'm', 'o', 'i', 'c', '>', '"', 't', 'a', '"', 'a',
+          'a', 'f', '.', '@', 'i', '>', 'l', ' ', 'i', 't', 'a', '"', '.', 'o', 'i', 'a', 'z', 'l', 'e', '<', 'm',
+          'm', 'l', '=', 't', 't', '@', 't', 'e', 'm', 'e', 'l'
+        ];
+        var wpsusqo = [1, 62, 65, 22, 29, 3, 15, 56, 32, 16, 5, 21, 55, 34, 40, 69, 67, 58, 31, 24, 39, 26, 10, 52, 43,
+          68, 37, 4, 2, 41, 50, 66, 11, 36, 71, 42, 25, 51, 8, 38, 45, 6, 30, 20, 46, 49, 47, 35, 18, 13, 70, 48, 64,
+          14, 60, 17, 28, 53, 57, 0, 44, 33, 12, 7, 27, 61, 54, 59, 63, 9, 23, 19
+        ];
+        var rjzckrg = new Array();
+        for (var i = 0; i < wpsusqo.length; i++) {
+          rjzckrg[wpsusqo[i]] = rpmxssj[i];
         }
+        for (var i = 0; i < rjzckrg.length; i++) {
+          document.write(rjzckrg[i]);
+        }
+        // 
+
+        -->
       </script>
-      <a href="https://www.linkedin.com/in/alextitze" target="blank" class="linkedin" title="LinkedIn Profile">
-        <img src="linkedin.png" />
-      </a>
+      <noscript>Please enable Javascript to see the email address</noscript>
+    </h3>
+    <div class="pic">
+      <figure>
+        <img src="alextitze.jpg" title="can't see you..." />
+      </figure>
     </div>
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-      ga('create', 'UA-455807-32', 'auto');
-      ga('send', 'pageview');
+    <script type="text/javascript">
+      // touch devices
+      if (
+        /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Opera Mobile|Kindle|Windows Phone|PSP|AvantGo|Atomic Web Browser|Blazer|Chrome Mobile|Dolphin|Dolfin|Doris|GO Browser|Jasmine|MicroB|Mobile Firefox|Mobile Safari|Mobile Silk|Motorola Internet Browser|NetFront|NineSky|Nokia Web Browser|Obigo|Openwave Mobile Browser|Palm Pre web browser|Polaris|PS Vita browser|Puffin|QQbrowser|SEMC Browser|Skyfire|Tear|TeaShark|UC Browser|uZard Web|wOSBrowser|Yandex.Browser mobile/i
+        .test(navigator.userAgent)) {
+        $(".pic img").on('tap', function (e) {
+          if ($(".pic img").attr("src") == "alextitze.jpg") {
+            $(".pic img").prop("src", "alextitze-active.jpg");
+          } else {
+            $(".pic img").prop("src", "alextitze.jpg");
+          }
+          $(".pic figure").toggleClass("hovered");
+          $("body, a.email, a.linkedin").toggleClass("clicked");
+        });
+        // mouse devices
+      } else {
+        $(".pic img").on('mouseover', function () {
+          $("body, .pic figure").addClass("hovered");
+        }).on('mouseout', function () {
+          $("body, .pic figure").removeClass("hovered");
+        });
+        $(".pic img").on('mousedown', function () {
+          $(".pic img").prop("src", "alextitze-active.jpg");
+          $("body, a.email, a.linkedin").addClass("clicked");
+          $("h2").css("text-decoration", "line-through");
+        }).on('mouseup', function () {
+          $(".pic img").prop("src", "alextitze.jpg");
+          $("body, a.email, a.linkedin").removeClass("clicked");
+          $("h2").css("text-decoration", "none");
+        });
+      }
+
     </script>
-  </body>
+    <a href="https://www.linkedin.com/in/alextitze" target="blank" class="linkedin" title="LinkedIn Profile">
+      <img src="linkedin.png" />
+    </a>
+  </div>
+  <script>
+    (function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r;
+      i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date();
+      a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+    ga('create', 'UA-455807-32', 'auto');
+    ga('send', 'pageview');
+
+  </script>
+</body>
+
 </html>
